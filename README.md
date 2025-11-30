@@ -1,4 +1,4 @@
-# README - Réannotation des Transcriptions Non Vérifiées
+# Réannotation des Transcriptions Non Vérifiées
 
 ## Description du Projet
 
@@ -15,6 +15,29 @@ Le dossier `raw/` contient **l'intégralité du corpus collecté** via Kallama p
 ### Objectif de la Réannotation
 Notre objectif est de **réannoter les parties non vérifiées (unchecked)** du corpus - c'est-à-dire les transcriptions qui n'ont pas encore été validées par des experts linguistes. Cette validation et correction sont effectuées par les linguistes experts de **CLAD**.
 
+## Source des Données Audio
+
+**Note importante :** L'ensemble des fichiers audio correspondant aux transcriptions sont disponibles sur **OpenSLR** (Open Speech and Language Resources).
+
+### Téléchargement des Datasets Audio
+
+Les datasets audio peuvent être téléchargés depuis OpenSLR aux URLs suivantes :
+
+```bash
+# Téléchargement du dataset Wolof
+wget https://www.openslr.org/resources/151/speech_dataset_wol.tar.gz
+
+# Téléchargement du dataset Pulaar
+wget https://www.openslr.org/resources/151/speech_dataset_fuc.tar.gz
+
+# Téléchargement du dataset Sereer
+wget https://www.openslr.org/resources/151/speech_dataset_srr.tar.gz
+```
+
+### Ressource OpenSLR
+- **Référence** : OpenSLR Resource #151
+- **Lien** : https://www.openslr.org/151/
+
 ## Workflow de Réannotation
 
 Le processus de réannotation suit les étapes suivantes :
@@ -28,7 +51,7 @@ Corpus raw (unchecked) → Extraction → Lots de 5h → Google Colab → GCP �
 
 ### 2. Organisation en Lots
 Les données extraites ont été divisées en lots de **5 heures** comprenant :
-- Les fichiers audio correspondants
+- Les fichiers audio correspondants (téléchargés depuis OpenSLR)
 - Les pré-annotations existantes (transcriptions brutes)
 
 ### 3. Pipeline de Traitement
@@ -40,6 +63,26 @@ Les données extraites ont été divisées en lots de **5 heures** comprenant :
 
 ### 4. Résultat Final
 Les transcriptions validées par CLAD sont ensuite placées dans le dossier `checked/` avec le statut de **transcriptions vérifiées**.
+
+## Utilisation Future des Données
+
+### Objectifs de Modélisation
+
+Les transcriptions réannotées et validées seront utilisées en combinaison avec d'autres données existantes au sein de la communauté pour :
+
+1. **Développer un modèle Wolof** : Un modèle ASR (Automatic Speech Recognition) spécialisé pour la langue wolof
+2. **Développer un modèle multilingue** : Un modèle ASR capable de gérer simultanément les trois langues :
+   - Pulaar (fuc)
+   - Sereer (srr)
+   - Wolof (wol)
+
+### Stratégie de Développement
+
+Les données réannotées de haute qualité permettront :
+- Un entraînement plus robuste des modèles
+- Une meilleure généralisation sur des données réelles
+- Une amélioration des performances de reconnaissance vocale pour les langues sénégalaises
+- La création de ressources linguistiques pérennes pour la communauté
 
 ## Structure des Dossiers
 
@@ -141,6 +184,7 @@ Contient les transcriptions qui ont été **validées et corrigées** par les ex
 - Gestion technique du projet
 - Mise en place du pipeline de traitement
 - Configuration des outils (Colab, GCP, Label Studio)
+- Développement des modèles ASR
 
 ### CLAD
 - Validation linguistique par des experts natifs
@@ -149,6 +193,7 @@ Contient les transcriptions qui ont été **validées et corrigées** par les ex
 
 ## Technologies Utilisées
 
+- **OpenSLR** : Source des données audio (Resource #151)
 - **Google Colab** : Environnement de prétraitement et de préparation des lots
 - **Google Cloud Platform (GCP)** : Stockage et hébergement des données audio et des transcriptions
 - **Label Studio** : Interface d'annotation et de réannotation des transcriptions
@@ -159,6 +204,7 @@ Contient les transcriptions qui ont été **validées et corrigées** par les ex
 - **Taille des lots** : 5 heures d'audio par lot
 - **Langues couvertes** : 3 (Pulaar, Sereer, Wolof)
 - **Formats de sortie** : TRS et STM
+- **Source audio** : OpenSLR Resource #151
 
 ## Contact et Support
 
@@ -166,6 +212,9 @@ Pour toute question concernant le processus de réannotation ou les transcriptio
 - **AI Hub Sénégal** : Support technique et questions sur le pipeline
 - **CLAD** : Questions linguistiques et validation des transcriptions
 
----
+## Références
 
-*Ce README documente le processus de réannotation des transcriptions non vérifiées du corpus Kallama pour les langues du Sénégal, dans le cadre du partenariat AI Hub Sénégal - CLAD.*
+- **OpenSLR Resource #151** : https://www.openslr.org/151/
+- **Kallama Project** : Corpus de données audio pour les langues sénégalaises
+
+
